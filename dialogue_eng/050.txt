@@ -1,0 +1,3 @@
+The par time limit will be
+displayed right before the
+puzzle starts!

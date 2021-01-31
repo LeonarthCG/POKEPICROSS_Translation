@@ -1,0 +1,4 @@
+If the time limit for a
+par time has already been
+reached then the counter
+will look like this!

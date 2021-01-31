@@ -1,0 +1,4 @@
+If you identify a block that
+should not be chiseled, mark
+it with an “X” to make it
+stand out!

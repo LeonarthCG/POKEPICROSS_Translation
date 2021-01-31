@@ -1,0 +1,55 @@
+PUSH
+
+ORG $1A48E0+0x0000
+#incbin "graphics/lv1.png.bin"
+ORG $1A48E0+0x0800
+#incbin "graphics/lv1.png.bin"
+ORG $1A48E0+0x1000
+#incbin "graphics/lv1.png.bin"
+
+ORG $1BE8E0+0x0000
+#incbin "graphics/lv2.png.bin"
+ORG $1BE8E0+0x0800
+#incbin "graphics/lv2.png.bin"
+ORG $1BE8E0+0x1000
+#incbin "graphics/lv2.png.bin"
+
+ORG $1DD8E0+0x0000
+#incbin "graphics/lv9.png.bin"
+ORG $1DD8E0+0x0800
+#incbin "graphics/lv9.png.bin"
+ORG $1DD8E0+0x1000
+#incbin "graphics/lv9.png.bin"
+
+ORG $1E00E0+0x0000
+#incbin "graphics/lv10.png.bin"
+ORG $1E00E0+0x0800
+#incbin "graphics/lv10.png.bin"
+ORG $1E00E0+0x1000
+#incbin "graphics/lv10.png.bin"
+
+ORG $163000
+#incbin "graphics/163000.png.bin"
+ORG $183000
+#incbin "graphics/183000.png.bin"
+
+ORG $186F80
+#incbin "graphics/186F80.png.bin"
+ORG $18B000
+#incbin "graphics/18B000.png.bin"
+
+ORG $17CDB0
+#incbin "graphics/17CDB0.png.bin"
+ORG $17CEB0
+#incbin "graphics/17CEB0.png.bin"
+ORG $17DE00
+#incbin "graphics/17DE00.png.bin"
+ORG $1E3000
+#incbin "graphics/1E3000.png.bin"
+ORG $17CB50
+#incbin "graphics/17CB50.png.bin"
+
+ORG $1EC0B0
+#incbin "graphics/par.png.bin"
+
+POP

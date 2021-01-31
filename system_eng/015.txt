@@ -1,0 +1,2 @@
+The ambient temperature
+is too high or too low.

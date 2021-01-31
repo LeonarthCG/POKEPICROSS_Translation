@@ -1,0 +1,4 @@
+When your theory looks
+good, you can open the
+menu again and choose
+“?END” to stop.

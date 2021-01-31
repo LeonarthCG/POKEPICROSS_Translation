@@ -1,0 +1,4 @@
+In Safari Picross the
+“Hint” option has been
+replaced by the new
+“?START” option.

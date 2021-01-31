@@ -1,0 +1,3 @@
+It is not necessary to solve
+all the puzzles inside of the
+par time limit.

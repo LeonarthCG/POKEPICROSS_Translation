@@ -1,0 +1,323 @@
+empty banks:
+01C000
+028000
+02C000
+030000
+034000
+038000
+03C000
+068000... point in case: a lot of them
+
+graphics loading:
+0723 draw graphics to XY position?
+
+0F69
+ a: bank
+bc: size
+de: destination (the game always has sram here?)
+hl: origin
+
+0FBD
+ a: not sure, game sets it to 0
+bc: size
+de: destination
+hl: origin (the game always has sram here?)
+
+compression psuedocode:
+offset = 0
+flags = a,(hl+offset)
+offset++
+if highest bit set:
+	offset++
+	for i in range(0,flags-0x7E):
+		previousbyte = byte at offset
+		store previousbyte to target and increment
+if highest bit not set:
+	for i in range(0,flags+1):
+		pixels = byte xor previousbyte
+
+widest puzzle name is 82 pixels wide, but it seems like different puzzle sizes have different max lengths
+the max width of a puzzle name's is given by the size
+names can be longer, 10x10 caps at 60
+for 15x15 and 20x20 puzzles it caps at 92
+pretty sure there are no 5x5 puzzles
+for dialogue the limit is 144 (134 for the tutorial)
+
+0x024000 to 0x0241E0 puzzle name table
+the first two bytes are not text???
+if it's 0 then it won't draw
+this seems to be something about the width of the name? it is used for the solved screen
+the 6 seems to be a constant, the lowest digit is how many pixels to offset it from the left, to center it
+	the 6 is the number of tiles to offset by so that makes sense
+start by writing the new text to the old area, then when we get close to the end jump to the freespace in that bank
+
+at around 0x9C68 dialogue text starts, but I can't find a table for this? might be loaded through unique routine calls for each
+(0E 00 29 00 38 00 2F)
+
+tutorial dialogue: 0x0062 in bank 5 (loaded through 2 instructions)... this is the same for every textbox in the tutorial which is pretty annoying
+this same issue happens with all of the story text!!!
+	3E XX EA 48 D5 3E YY EA 49 D5
+
+0x15C000 font? the font seems to exist multiple times in the rom
+0x15C000 for puzzle name display in puzzle select
+each character's graphics are 16 by 10
+
+pokedex names are handled in a different way
+each name has a list of 5 tiles for the top and bottom row, starting at 0x7D945, up to 0x7DF35 (the last entry is 10 blank tiles)
+maybe this is not it??
+there is a similar, if not identical, table at 0xEA7E7 that is also 0x5F0 bytes long, ending at 0xEADD7
+
+at 0x286F there is a table with widths for every character, one byte a character
+
+1e6ba0 compressed main menu stuff
+
+1:5E79 given puzzle size gets ui graphics
+
+1008E6 size for the charizard puzzle!
+byte at [puzzle id * 2 + (0x40 * 0x4000)] + (0x3F * 0x4000) is size!
+
+0x0000 = あ
+0x0001 = い
+0x0002 = う
+0x0003 = え
+0x0004 = お
+0x0005 = か
+0x0006 = き
+0x0007 = く
+0x0008 = け
+0x0009 = こ
+0x000A = さ
+0x000B = し
+0x000C = す
+0x000D = せ
+0x000E = そ
+0x000F = た
+0x0010 = ち
+0x0011 = つ
+0x0012 = て
+0x0013 = と
+0x0014 = な
+0x0015 = に
+0x0016 = ぬ
+0x0017 = ね
+0x0018 = の
+0x0019 = は
+0x001A = ひ
+0x001B = ふ
+0x001C = へ
+0x001D = ほ
+0x001E = ま
+0x001F = み
+0x0020 = む
+0x0021 = め
+0x0022 = も
+0x0023 = や
+0x0024 = ゆ
+0x0025 = よ
+0x0026 = ら
+0x0027 = り
+0x0028 = る
+0x0029 = れ
+0x002A = ろ
+0x002B = わ
+0x002C = を
+0x002D = ん
+0x002E = っ
+0x002F = ゃ
+0x0030 = ゅ
+0x0031 = ょ
+0x0032 = が
+0x0033 = ぎ
+0x0034 = ぐ
+0x0035 = げ
+0x0036 = ご
+0x0037 = ざ
+0x0038 = じ
+0x0039 = ず
+0x003A = ぜ
+0x003B = ぞ
+0x003C = だ
+0x003D = ぢ
+0x003E = づ
+0x003F = で
+0x0040 = ど
+0x0041 = ば
+0x0042 = び
+0x0043 = ぶ
+0x0044 = べ
+0x0045 = ぼ
+0x0046 = ぱ
+0x0047 = ぴ
+0x0048 = ぷ
+0x0049 = ぺ
+0x004A = ぽ
+0x004B = ぁ
+0x004C = ぃ
+0x004D = ぅ
+0x004E = ぇ
+0x004F = ぉ
+0x0050 = ア
+0x0051 = イ
+0x0052 = ウ
+0x0053 = エ
+0x0054 = オ
+0x0055 = カ
+0x0056 = キ
+0x0057 = ク
+0x0058 = ケ
+0x0059 = コ
+0x005A = サ
+0x005B = シ
+0x005C = ス
+0x005D = セ
+0x005E = ソ
+0x005F = タ
+0x0060 = チ
+0x0061 = ツ
+0x0062 = テ
+0x0063 = ト
+0x0064 = ナ
+0x0065 = ニ
+0x0066 = ヌ
+0x0067 = ネ
+0x0068 = ノ
+0x0069 = ハ
+0x006A = ヒ
+0x006B = フ
+0x006C = ヘ
+0x006D = ホ
+0x006E = マ
+0x006F = ミ
+0x0070 = ム
+0x0071 = メ
+0x0072 = モ
+0x0073 = ヤ
+0x0074 = ユ
+0x0075 = ヨ
+0x0076 = ラ
+0x0077 = リ
+0x0078 = ル
+0x0079 = レ
+0x007A = ロ
+0x007B = ワ
+0x007C = ヲ
+0x007D = ン
+0x007E = ッ
+0x007F = ャ
+0x0080 = ュ
+0x0081 = ョ
+0x0082 = ガ
+0x0083 = ギ
+0x0084 = グ
+0x0085 = ゲ
+0x0086 = ゴ
+0x0087 = ザ
+0x0088 = ジ
+0x0089 = ズ
+0x008A = ゼ
+0x008B = ゾ
+0x008C = ダ
+0x008D = ヂ
+0x008E = ヅ
+0x008F = デ
+0x0090 = ド
+0x0091 = バ
+0x0092 = ビ
+0x0093 = ブ
+0x0094 = ベ
+0x0095 = ボ
+0x0096 = パ
+0x0097 = ピ
+0x0098 = プ
+0x0099 = ペ
+0x009A = ポ
+0x009B = ァ
+0x009C = ィ
+0x009D = ウ
+0x009E = ェ
+0x009F = ォ
+0x00A0 = 0
+0x00A1 = 1
+0x00A2 = 2
+0x00A3 = 3
+0x00A4 = 4
+0x00A5 = 5
+0x00A6 = 6
+0x00A7 = 7
+0x00A8 = 8
+0x00A9 = 9
+0x00AA = ー
+0x00AB = A
+0x00AC = B
+0x00AD = C
+0x00AE = D
+0x00AF = E
+0x00B0 = F
+0x00B1 = G
+0x00B2 = H
+0x00B3 = I
+0x00B4 = J
+0x00B5 = K
+0x00B6 = L
+0x00B7 = M
+0x00B8 = N
+0x00B9 = O
+0x00BA = P
+0x00BB = Q
+0x00BC = R
+0x00BD = S
+0x00BE = T
+0x00BF = U
+0x00C0 = V
+0x00C1 = W
+0x00C2 = X
+0x00C3 = Y
+0x00C4 = Z
+0x00C5 = a
+0x00C6 = b
+0x00C7 = c
+0x00C8 = d
+0x00C9 = e
+0x00CA = f
+0x00CB = g
+0x00CC = h
+0x00CD = i
+0x00CE = j
+0x00CF = k
+0x00D0 = l
+0x00D1 = m
+0x00D2 = n
+0x00D3 = o
+0x00D4 = p
+0x00D5 = q
+0x00D6 = r
+0x00D7 = s
+0x00D8 = t
+0x00D9 = u
+0x00DA = v
+0x00DB = w
+0x00DC = x
+0x00DD = y
+0x00DE = z
+0x00DF = space
+0x00E0 = 、
+0x00E1 = 。
+0x00E2 = 『
+0x00E3 = 』
+0x00E4 = ✕
+0x00E5 = “
+0x00E6 = ”
+0x00E7 = !
+0x00E8 = ?
+0x00E9 = :
+0x00EA = ;
+0x00EB = ,
+0x00EC = .
+0x00ED = ·
+0x00EE = (
+0x00EF = )
+0x00F0 = ~
+0x00F1 = ♂️
+0x00F2 = ♀
+0xFFFE = newline
+0xFFFF = terminator

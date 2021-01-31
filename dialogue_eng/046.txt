@@ -1,0 +1,4 @@
+You can tell if you can
+still achieve a par time
+by checking the time that
+is still remaining.

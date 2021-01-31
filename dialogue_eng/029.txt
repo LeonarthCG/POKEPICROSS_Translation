@@ -1,0 +1,4 @@
+
+tell us to chisel 3 blocks
+in a row, then 1 further
+away, separated.

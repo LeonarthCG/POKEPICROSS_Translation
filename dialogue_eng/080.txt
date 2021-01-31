@@ -1,0 +1,3 @@
+The blocks you marked
+will return to their
+regular state.

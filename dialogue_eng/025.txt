@@ -1,0 +1,4 @@
+
+tells us we should chisel
+away 5 consecutive blocks
+on this column.

@@ -1,0 +1,4 @@
+If you select “YES” when the
+“USE HINT?” option appears
+the hint roulette will start
+spinning.
