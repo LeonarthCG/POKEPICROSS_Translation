@@ -6,7 +6,7 @@ The patch is complete, the entire story, the titlescreen, the tutorials, the men
 The game is easy to navigate and play even with no translation, as long as the player is already familiar with nonogram rules.
 
 The translation work was done through a combination of online tools and consultations and as such it might not be very accurate, however, the source is now available on github.
-If you are interested in making your own version of the translation, or translating the game to a different language, check: 
+If you are interested in making your own version of the translation, or translating the game to a different language, check: https://github.com/LeonarthCG/POKEPICROSS_Translation
 */
 
 #ifndef GBOFFSET //org to Bank:Offset
