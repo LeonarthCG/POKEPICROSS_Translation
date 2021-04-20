@@ -28,6 +28,16 @@ $RECYCLE.BIN/
 Event Assembler
 ups
 
+#files you are expected to build
+graphics/*.bin
+compressed/*.bin
+compressed/*.bin.dmp
+dialogue.event
+fontGraphics.event
+fontWidth.event
+names.event
+system.event
+
 # =========================
 # Operating System Files
 # =========================

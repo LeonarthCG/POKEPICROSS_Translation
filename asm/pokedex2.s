@@ -8,6 +8,13 @@ push de
 push hl
 
 ;our new code
+
+;check if we are not in the list
+ld a, [$DBCC]
+cp a, 0
+jp z, end
+
+;
 ld a, [$DBC6]
 cp a, 0
 jp z, is0
@@ -346,6 +353,7 @@ ld hl, $A000
 call $0FBD
 
 ;restore registers and return
+end:
 pop	hl
 pop	de
 pop	bc
