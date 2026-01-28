@@ -29,6 +29,8 @@ If you are interested in making your own version of the translation, or translat
 #include "dialogue.event"
 #include "system.event"
 
+PUSH; ORG $1E8FCD; BYTE 0x98; POP // fix Pokémon "Picposs" sgb border
+
 PUSH; ORG GBOFFSET(0x02,0x4C5D); BYTE 0x01; POP //add one pixel after a character is drawn, not two
 
 //replace main menu graphics and background maps
